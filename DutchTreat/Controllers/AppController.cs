@@ -19,7 +19,7 @@ namespace DutchTreat.Controllers
         [HttpPost("contact")]
         public IActionResult Contact(ContactViewModel model)
         {
-            return Ok();
+            return View();
         }
 
         public IActionResult About()
