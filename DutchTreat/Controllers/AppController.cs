@@ -1,3 +1,4 @@
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DutchTreat.Controllers
@@ -13,6 +14,12 @@ namespace DutchTreat.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost("contact")]
+        public IActionResult Contact(ContactViewModel model)
+        {
+            return Ok();
         }
 
         public IActionResult About()
