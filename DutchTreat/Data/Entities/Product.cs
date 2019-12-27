@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DutchTreat.Data.Entities
 {
@@ -7,6 +8,7 @@ namespace DutchTreat.Data.Entities
         public int Id { get; set; }
         public string Category { get; set; }
         public string Size { get; set; }
+        [Column(TypeName = "decimal(14,2)")]
         public decimal Price { get; set; }
         public string Title { get; set; }
         public string ArtDescription { get; set; }

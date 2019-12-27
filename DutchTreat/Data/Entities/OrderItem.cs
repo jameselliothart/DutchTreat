@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DutchTreat.Data.Entities
 {
     public class OrderItem
@@ -5,6 +7,7 @@ namespace DutchTreat.Data.Entities
         public int Id { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
+        [Column(TypeName = "decimal(14,2)")]
         public decimal UnitPrice { get; set; }
         public Order Order { get; set; }
     }
