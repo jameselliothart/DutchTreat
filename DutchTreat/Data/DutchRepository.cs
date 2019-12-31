@@ -22,6 +22,7 @@ namespace DutchTreat.Data
         {
             return ctx.Orders
                     .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
                     .ToList();
         }
 
