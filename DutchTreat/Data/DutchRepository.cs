@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DutchTreat.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Data
@@ -15,6 +16,13 @@ namespace DutchTreat.Data
         {
             this.ctx = ctx;
             this.logger = logger;
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return ctx.Orders
+                    .Include(o => o.Items)
+                    .ToList();
         }
 
         public IEnumerable<Product> GetAllProducts()
