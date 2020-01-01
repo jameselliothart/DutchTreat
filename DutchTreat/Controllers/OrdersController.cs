@@ -1,5 +1,6 @@
 using System;
 using DutchTreat.Data;
+using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -48,6 +49,27 @@ namespace DutchTreat.Controllers
                 logger.LogError($"{msg}: {ex}");
                 return BadRequest($"{msg}");
             }
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Order model)
+        {
+            var msg = "Failed to save a new order";
+            
+            try
+            {
+                repository.AddEntity(model);
+                if (repository.SaveAll())
+                {
+                    return CreatedAtAction(nameof(Get), new { id = model.Id}, model);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"{msg}: {ex}");
+            }
+
+            return BadRequest($"{msg}");
         }
     }
 }
