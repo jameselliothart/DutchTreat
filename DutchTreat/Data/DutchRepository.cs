@@ -41,6 +41,15 @@ namespace DutchTreat.Data
             }
         }
 
+        public Order GetOrderById(int id)
+        {
+            return ctx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault();
+        }
+
         public IEnumerable<Product> GetProductByCategory(string category)
         {
             return ctx.Products
