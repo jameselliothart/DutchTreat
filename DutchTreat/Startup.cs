@@ -39,7 +39,12 @@ namespace DutchTreat
             services.AddIdentity<StoreUser, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<DutchContext>();
+            })
+                .AddEntityFrameworkStores<DutchContext>();
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
+                
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddTransient<DutchSeeder>();
