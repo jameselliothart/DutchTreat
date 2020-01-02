@@ -36,9 +36,10 @@ namespace DutchTreat
             {
                 cfg.UseSqlServer(config.GetConnectionString("DutchConnectionString"));
             });
-            services.AddIdentity<StoreUser, IdentityRole>()
-                .AddEntityFrameworkStores<DutchContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<StoreUser, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<DutchContext>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddTransient<DutchSeeder>();
