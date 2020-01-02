@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using DutchTreat.Data;
+using DutchTreat.Data.Entities;
 using DutchTreat.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,9 @@ namespace DutchTreat
             {
                 cfg.UseSqlServer(config.GetConnectionString("DutchConnectionString"));
             });
+            services.AddIdentity<StoreUser, IdentityRole>()
+                .AddEntityFrameworkStores<DutchContext>()
+                .AddDefaultTokenProviders();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IDutchRepository, DutchRepository>();
             services.AddTransient<DutchSeeder>();
