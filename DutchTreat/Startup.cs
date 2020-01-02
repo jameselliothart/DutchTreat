@@ -64,6 +64,9 @@ namespace DutchTreat
             app.UseStaticFiles();
             app.UseNodeModules();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseRouting();
 
             app.UseEndpoints(cfg => 
