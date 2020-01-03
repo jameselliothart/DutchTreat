@@ -53,7 +53,7 @@ namespace DutchTreat.Controllers
         {
             try
             {
-                var order = repository.GetOrderById(id);
+                var order = repository.GetOrderById(User.Identity.Name, id);
 
                 if (order != null) return Ok(mapper.Map<Order, OrderViewModel>(order));
                 else return NotFound();
